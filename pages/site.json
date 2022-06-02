@@ -1,0 +1,156 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/",
+        "redirect": "/index/1"
+      },
+      {
+        "label": "示例",
+        "children": [
+          {
+            "label": "页面A",
+            "url": "index",
+            "schema": {
+              "type": "page",
+              "title": "页面A",
+              "body": "页面A"
+            },
+            "children": [
+              {
+                "label": "页面A-1",
+                "url": "1",
+                "schema": {
+                  "type": "page",
+                  "title": "页面A-1",
+                  "body": {
+                    "type": "qrcode",
+                    "value": "https://amis.baidu.com",
+                    "id": "u:5e99b97a8255"
+                  }
+
+                }
+              },
+              {
+                "label": "页面A-2",
+                "url": "2",
+                "schema": {
+                  "type": "page",
+                  "title": "页面A-2",
+                  "body": {
+                    "type": "page",
+                    "body": {
+                      "type": "form",
+                      "api": {
+                        "method": "post",
+                        "url": "http://localhost:8202/admin/upload",
+                        "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}",
+                        "data": {
+                          "img": "${file}"
+                        }
+                      },
+                      "body": [
+                        {
+                          "name": "file",
+                          "type": "input-file",
+                          "label": "附件：",
+                          "asBlob": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }      
+            ]
+          },
+          {
+            "label": "图书栏",
+            "schemaApi": "jsonp:/pages/card.js?callback=jsonpCallback"
+          },
+          {
+            "label": "图书管理",
+            "schemaApi": "jsonp:/pages/bookList.js?callback=jsonpCallback",
+            "children": [
+              {
+                "label": "图书信息",
+                "schemaApi": "jsonp:/pages/booksInfo.js?callback=jsonpCallback"
+              }, 
+              {
+                "label": "图书修改",
+                "schemaApi": "jsonp:/pages/controlBooks.js?callback=jsonpCallback"
+              }
+            ]
+          },
+          {
+            "label": "借阅管理",
+            "schema": {
+              "type": "page",
+              "title": "借阅管理",
+              "body": ""
+            },
+            "children": [
+              {
+                "label": "借阅信息",
+                "schemaApi": "jsonp:/pages/lendList/adminLend.js?callback=jsonpCallback"
+              },
+              {
+                "label": "用户借阅信息",
+                "schemaApi": "jsonp:/pages/lendList/UserLend.js?callback=jsonpCallback"
+              },
+              {
+                "label": "逾期记录",
+                "schemaApi": "jsonp:/pages/lendList/overdue.js?callback=jsonpCallback"
+              }
+            ]
+          },
+          {
+            "label": "列表示例",
+            "url": "/crud",
+            "rewrite": "/crud/list",
+            "icon": "fa fa-cube",
+            "children": [
+              {
+                "label": "列表",
+                "url": "/crud/list",
+                "icon": "fa fa-list",
+                "schemaApi": "get:/pages/crud-list.json"
+              },
+              {
+                "label": "新增",
+                "url": "/crud/new",
+                "icon": "fa fa-plus",
+                "schemaApi": "get:/pages/crud-new.json"
+              },
+              {
+                "label": "查看",
+                "url": "/crud/:id",
+                "schemaApi": "get:/pages/booksInfo.json"
+              },
+              {
+                "label": "修改",
+                "url": "/crud/:id/edit",
+                "schemaApi": "get:/pages/controlBooks.json"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "分组2",
+        "children": [
+          {
+            "label": "用户管理",
+            "schemaApi": "jsonp:/pages/adminUser.js?callback=jsonpCallback"
+          },
+          {
+            "label": "jsonp 返回示例",
+            "schemaApi": "jsonp:/pages/jsonp.js?callback=jsonpCallback"
+          }
+        ]
+      }
+    ]
+  }
+}
