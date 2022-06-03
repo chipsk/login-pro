@@ -3,8 +3,8 @@
 		"type": "crud",
 		"syncLocation": false,
 		"api": {
-		  "method": "get",
-		  "url": "http://localhost:8202/admin/book/getBooksInfoWithoutEntity/${page}?pageSize=${perPage}",
+		  "method": "post",
+		  "url": "http://localhost:8202/admin/book/getBooksInfo/${page}?pageSize=${perPage}",
 		  "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}",
 		  "perPage": 10
 		},
