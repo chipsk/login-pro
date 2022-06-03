@@ -6,7 +6,7 @@
           "type": "crud",
           "api": {
             "method": "get",
-            "url": "http://localhost:8202/admin/book/getBooksInfoWithoutEntity/${page}?pageSize=${perPage}",
+            "url": "http://localhost:8202/admin/book/getBooksInfo/${page}?pageSize=${perPage}",
             "perPage": 10,
             "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
           },
